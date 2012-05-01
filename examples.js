@@ -35,6 +35,11 @@ var example = function(_){
 		return _.pluck(example.followers(), 'location');
 	}
 
+	publicAccessors.mostFollowers = function(){
+		return _.max(example.followers(), function(follower){
+			return follower.followerCount;
+		});
+	}
 	
 	publicAccessors.followersByLocation = function(){
 		return _.groupBy(example.followers(), 'location');
@@ -52,11 +57,12 @@ var example = function(_){
 			return total + follower.friendCount;
 		}, 0);
 	}
-	
+		
 	publicAccessors.print = function(string){
 		console.log(string);
 	}
 
 	return publicAccessors;
+	
 }(underscore);
 
